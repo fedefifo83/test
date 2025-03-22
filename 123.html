@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect Example</title>
+</head>
+<body>
+    <script>
+        async function redirectToLink() {
+            try {
+                const apiUrl = 'https://api.example.com/get-link';
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const redirectUrl = data.url;
+
+                if (!redirectUrl || typeof redirectUrl !== 'string' || !redirectUrl.startsWith('http')) {
+                    throw new Error('Полученная ссылка некорректна');
+                }
+
+                window.location.href = redirectUrl;
+            } catch (error) {
+                console.error('Произошла ошибка:', error.message);
+            }
+        }
+
+        redirectToLink();
+    </script>
+</body>
+</html>
