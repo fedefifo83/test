@@ -1,35 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirect Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>File Download</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <script>
-        async function redirectToLink() {
-            try {
-                const apiUrl = 'https://fedefifo83.github.io/tesr2/'; // URL вашего API
-                const response = await fetch(apiUrl);
-
-                if (!response.ok) {
-                    throw new Error(`Ошибка HTTP: ${response.status}`);
-                }
-
-                const data = await response.json();
-                const redirectUrl = data.url;
-
-                if (!redirectUrl || typeof redirectUrl !== 'string' || !redirectUrl.startsWith('http')) {
-                    throw new Error('Полученная ссылка некорректна');
-                }
-
-                window.location.href = redirectUrl;
-            } catch (error) {
-                console.error('Произошла ошибка:', error.message);
-            }
-        }
-
-        redirectToLink();
-    </script>
+  <div class="background">
+    <div class="gradient"></div>
+  </div>
+  <div class="container">
+    <div class="arrow">
+      <svg viewBox="0 0 24 24" width="32" height="32">
+        <path d="M7 17l9.2-9.2M17 17V8h-9" />
+      </svg>
+    </div>
+    <div id="loader" class="loader"></div>
+    <h1>Your file is downloading</h1>
+    <p id="status">Please wait a moment...</p>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
